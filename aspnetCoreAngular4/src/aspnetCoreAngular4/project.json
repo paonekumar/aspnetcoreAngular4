@@ -1,49 +1,68 @@
 ﻿{
-  "dependencies": {
-    "Microsoft.NETCore.App": {
-      "version": "1.0.1",
-      "type": "platform"
-    },
-    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
-    
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
-			"Microsoft.Extensions.Logging.Console": "1.0.0",
-			"Microsoft.AspNetCore.StaticFiles": "1.1.2"
-  },
+	"dependencies": {
+		"Microsoft.NETCore.App": {
+			"version": "1.0.1",
+			"type": "platform"
+		},
+		"Microsoft.AspNetCore.Diagnostics": "1.0.0",
 
-  "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
-  },
+		"Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+		"Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
+		"Microsoft.Extensions.Logging.Console": "1.0.0",
+		"Microsoft.AspNetCore.StaticFiles": "1.1.2"
+	},
 
-  "frameworks": {
-    "netcoreapp1.0": {
-      "imports": [
-        "dotnet5.6",
-        "portable-net45+win8"
-      ]
-    }
-  },
+	"tools": {
+		"Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+	},
 
-  "buildOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
+	"frameworks": {
+		"netcoreapp1.0": {
+			"imports": [
+				"dotnet5.6",
+				"portable-net45+win8"
+			]
+		}
+	},
 
-  "runtimeOptions": {
-    "configProperties": {
-      "System.GC.Server": true
-    }
-  },
+	"buildOptions": {
+		"emitEntryPoint": true,
+		"preserveCompilationContext": true
+	},
 
-  "publishOptions": {
-    "include": [
-      "wwwroot",
-      "web.config"
-    ]
-  },
+	"runtimeOptions": {
+		"configProperties": {
+			"System.GC.Server": true
+		}
+	},
 
-  "scripts": {
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
-  }
+	"publishOptions": {
+		"include": [
+			"wwwroot",
+			"web.config"
+		]
+	},
+
+	"scripts": {
+		"ng": "ng",
+		"prerestore": "npm install",
+		"restore": "dotnet restore",
+		"postrestore": "npm run build",
+		"prestart": "npm run restore",
+		"start": "dotnet run",
+		"client": "ng serve",
+		"lint": "tslint \"src/**/*.ts\"",
+		"test": "ng test",
+		"pree2e": "webdriver-manager update --standalone false --gecko false",
+		"e2e": "protractor",
+		"clean": "rimraf -- wwwroot",
+		"postclean": "ng build",
+		"prebuild": "npm run clean",
+		"build": "dotnet build",
+		"clean:prod": "rimraf -- wwwroot",
+		"postclean:prod": "ng build --prod",
+		"prebuild:prod": "npm run clean:prod",
+		"build:prod": "dotnet publish -c release",
+		"postcompile":"ng build"
+	}
 }
