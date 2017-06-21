@@ -4,4 +4,4 @@ ASPNETCoreAngular
 
 Please check https://github.com/paonekumar/aspnetcoreAngular4 VS2015
 
-Angular 4 (& material) in ASP.NET Core with TypeScript Angular-CLI
+Angular 4 with ASP.NET Core and TypeScript by using Angular-CLI
